@@ -1,6 +1,7 @@
-package git.jogindermikael.SpringSecExa;
+package git.jogindermikael.SpringSecExa.controller;
 
 
+import git.jogindermikael.SpringSecExa.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;

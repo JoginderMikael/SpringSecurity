@@ -1,4 +1,4 @@
-package git.jogindermikael.SpringSecExa;
+package git.jogindermikael.SpringSecExa.model;
 
 public class Student {
     private int id;
