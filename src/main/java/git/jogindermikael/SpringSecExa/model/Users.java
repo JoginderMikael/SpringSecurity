@@ -15,7 +15,9 @@ public class Users {
     @Column(nullable=false)
     private String password;
 
+    public Users(){
 
+    }
     public Users(int id, String username, String password) {
         this.id = id;
         this.username = username;

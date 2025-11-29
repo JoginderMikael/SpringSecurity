@@ -32,11 +32,12 @@ public class SecurityConfig{
        return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
-                        request.anyRequest().authenticated())
+                        request.requestMatchers("/register", "/").permitAll() //allow register without authentication
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults()) //login from http client like postman
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-               //.authenticationProvider(authenticationProvider())
+                .authenticationProvider(authenticationProvider())
                 .build();
 
         //.formLogin(Customizer.withDefaults()) //show login form on browser
@@ -64,9 +65,7 @@ public class SecurityConfig{
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
-        //provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
-        //provider.setUserDetailsPasswordService((UserDetailsPasswordService) userDetailsService);
         return provider;
   }
 }
