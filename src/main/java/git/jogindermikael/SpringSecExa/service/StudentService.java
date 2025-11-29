@@ -1,7 +1,7 @@
 package git.jogindermikael.SpringSecExa.service;
 
 import git.jogindermikael.SpringSecExa.model.Student;
-import git.jogindermikael.SpringSecExa.repo.StudetRepo;
+import git.jogindermikael.SpringSecExa.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class StudentService {
 
     @Autowired
-    StudetRepo repo;
+    StudentRepo repo;
 
     public List<Student> getAllStudents() {
         return new ArrayList<>(repo.findAll());
