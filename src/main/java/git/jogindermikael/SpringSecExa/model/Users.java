@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Users {
 
     @Id
-    private int id;
+    private Integer id;
     private String username;
 
     @Column(nullable=false)
@@ -18,13 +18,13 @@ public class Users {
     public Users(){
 
     }
-    public Users(int id, String username, String password) {
+    public Users(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
