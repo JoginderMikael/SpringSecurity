@@ -2,7 +2,9 @@ package git.jogindermikael.SpringSecExa.controller;
 
 
 import git.jogindermikael.SpringSecExa.model.Student;
+import git.jogindermikael.SpringSecExa.service.StudentService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +18,17 @@ import java.util.List;
 public class StudentController {
 
 
-    private List<Student> students = new ArrayList<>(List.of(new Student(1, "Joginder", 90),
-    new Student(2, "Mikael", 89)
-    ));
+//    private List<Student> students = new ArrayList<>(List.of(new Student(1, "Joginder", 90),
+//    new Student(2, "Mikael", 89)
+//    ));
+
+    @Autowired
+    StudentService studentService;
+
 
     @GetMapping("/students")
     public List<Student> getStudent(){
-        return students;
+        return studentService.getAllStudents();
 }
 
     @GetMapping("/csrf-token")
@@ -32,7 +38,6 @@ public class StudentController {
 
     @PostMapping("/students")
     public Student addStudent(@RequestBody Student student){
-        students.add(student);
-        return student;
+        return studentService.addStudent(student);
 }
 }

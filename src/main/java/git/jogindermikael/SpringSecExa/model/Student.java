@@ -1,11 +1,19 @@
 package git.jogindermikael.SpringSecExa.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Student {
+
+    @Id
     private int id;
     private String name;
     private int marks;
 
+    public Student(){
 
+    }
     public Student(int id, String name, int marks) {
         this.id = id;
         this.name = name;
