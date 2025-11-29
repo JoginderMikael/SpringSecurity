@@ -1,6 +1,8 @@
 package git.jogindermikael.SpringSecExa.config;
 
 
+import git.jogindermikael.SpringSecExa.filters.JwtFilter;
+import git.jogindermikael.SpringSecExa.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +29,9 @@ public class SecurityConfig{
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtFilter jwtFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
@@ -34,15 +39,16 @@ public class SecurityConfig{
        return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/register", "/", "/login").permitAll() //allow register without authentication
+                        .requestMatchers("/register", "/", "/login")
+                        .permitAll() //allow register without authentication
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults()) //login from http client like postman
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
                 .build();
 
         //.formLogin(Customizer.withDefaults()) //show login form on browser
+        //.authenticationProvider(authenticationProvider())
     }
 
 //    @Bean
