@@ -33,12 +33,12 @@ public class SecurityConfig{
 
        return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request ->
-                        request.requestMatchers("/register", "/").permitAll() //allow register without authentication
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/register", "/", "/login").permitAll() //allow register without authentication
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults()) //login from http client like postman
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .build();
 
