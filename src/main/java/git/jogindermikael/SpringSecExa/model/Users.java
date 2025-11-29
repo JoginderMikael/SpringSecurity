@@ -1,5 +1,6 @@
 package git.jogindermikael.SpringSecExa.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -10,6 +11,8 @@ public class Users {
     @Id
     private int id;
     private String username;
+
+    @Column(nullable=false)
     private String password;
 
 

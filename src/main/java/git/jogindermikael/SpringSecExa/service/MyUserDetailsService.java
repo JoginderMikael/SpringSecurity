@@ -4,12 +4,14 @@ import git.jogindermikael.SpringSecExa.model.UserPrincipal;
 import git.jogindermikael.SpringSecExa.model.Users;
 import git.jogindermikael.SpringSecExa.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
+@EnableWebSecurity
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -25,10 +27,11 @@ public class MyUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }else{
             IO.println("User found: " + user);
-            return org.springframework.security.core.userdetails.User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .build();
+            return new UserPrincipal(user);
+//            return org.springframework.security.core.userdetails.User.builder()
+//                    .username(user.getUsername())
+//                    .password(user.getPassword())
+//                    .build();
         }
     }
 }

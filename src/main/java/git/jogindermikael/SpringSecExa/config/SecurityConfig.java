@@ -19,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig{
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults()) //login from http client like postman
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+               //.authenticationProvider(authenticationProvider())
                 .build();
 
         //.formLogin(Customizer.withDefaults()) //show login form on browser
